@@ -1,8 +1,8 @@
 name: Docker Image CI
 
 env:
-  today: $(date +%s)
-  reponame: ${{secrets.DOCKERHUB_USERNAME}}
+  TODAY: $(date +%s)
+  REPO_NAME: ${{secrets.DOCKERHUB_USERNAME}}
 
 on:
   push:
@@ -25,6 +25,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag $(reponame)/compilers:$(today)
+      run: docker build . --file Dockerfile --tag $REPO_NAME/compilers:$TODAY
     - name: Push Docker image
-      run: docker push $(reponame)/compilers:$(today)
+      run: docker push $REPO_NAME/compilers:$TODAY
